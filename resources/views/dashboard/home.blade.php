@@ -24,7 +24,7 @@
         <div class="left_menu_container" id="menuList">
             <span id="closeBtn" class="close_btn"><i class="bx bx-arrow-back"></i></span>
             <div class="user_profile">
-                <img src="{{ asset('img/man.png') }}" alt="" class="profile_img" />
+                <img src="{{ asset('profile/man.png') }}" alt="" class="profile_img" />
                 <br>
                 <span class="profile_name">{{ Session()->get('LOGIN_USER')->name }}</span>
             </div>

@@ -5,6 +5,11 @@
     <div class="container">
         <div class="card add_card">
             <h2 class="title">New Item</h2>
+            @if ($success = session()->get('success'))
+                <div class="message success">
+                    <span class="success_text">{{ $success }}</span>
+                </div>
+            @endif
             <form action="{{ route('save#product') }}" method="POST" id="product_form" enctype="multipart/form-data">
                 @csrf
                 <div class="form_row">
@@ -14,6 +19,7 @@
                             <div class="label">
                                 <label for="name">Item Name</label>
                             </div>
+
                             <div class="form_input">
                                 <input type="text" name="name" id="name" class="form_control"
                                     placeholder="Enter your item name" />
@@ -48,7 +54,7 @@
                                 <label for="brands">Product Photo</label>
                             </div>
                             <div class="form_input">
-                                <input type="file" name="product_img" id="product_img" accept="image/*">
+                                <input type="file" name="image" id="product_img" accept="image/*">
                                 <span class="btn primary_btn"
                                     onclick="document.getElementById('product_img').click()">Upload Image</span>
                             </div>
@@ -101,9 +107,9 @@
                                 <label for="name">Instock/Preorder</label>
                             </div>
                             <div class="form_input">
-                                <input type="radio" name="stock" id="stock" class="form_radio" value="instock" />
+                                <input type="radio" name="stock" id="stock" class="form_radio" value="1" />
                                 InStock &nbsp;
-                                <input type="radio" name="stock" id="stock" class="form_radio" value="preorder" />
+                                <input type="radio" name="stock" id="stock" class="form_radio" value="0" />
                                 PreOrder
                             </div>
                             @error('stock')
@@ -141,8 +147,7 @@
     </div>
 
     <script>
-
-        $('#cancel').click((e) =>{
+        $('#cancel').click((e) => {
             e.preventDefault();
             window.location.href = `{{ route('product#list') }}`;
         });

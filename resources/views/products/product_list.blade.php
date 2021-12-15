@@ -46,7 +46,7 @@
             $(document).on('keyup', '#search', function() {
                 var query = $('#search').val();
 
-                var page = $('#hidden_page').val();
+                var page = $('#hidden_page').val('1');
                 fetch_data(page, query);
             });
 

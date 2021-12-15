@@ -22,7 +22,7 @@ class ProductController extends Controller
             $products = DB::table('products')
                     ->where('p_name', 'like', '%'.$req_data.'%')
                     ->orWhere('specs', 'like', '%'.$req_data.'%')
-                    ->orderBy('price', 'desc')
+                    ->orderBy('created_at', 'desc')
                     ->paginate(6);
             
             return view('products.product_pagination', compact('products'))->render();
@@ -40,11 +40,32 @@ class ProductController extends Controller
             'name' => 'required|max:100',
             'price' => 'required',
             'qty' => 'required',
-            'product_img' => 'required|image:jpeg,png,jpg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'specs' => 'required',
             'brand_name' => 'required',
             'stock' => 'required'
         ]);
-        // echo 'hello';
+
+        $req_data = array();
+        $req_data['p_name'] = $request->post('name');
+        $req_data['price'] = $request->post('price');
+        $req_data['qty'] = $request->post('qty');
+        $req_data['specs'] = $request->post('specs');
+        $req_data['b_id'] = $request->post('brand_name');
+        $req_data['stock'] = $request->post('stock');
+        
+        
+        
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $product_photo = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $product_photo);
+            $req_data['p_image'] = $product_photo;
+        }
+
+        Product::create($req_data);
+
+        return redirect()->back()->with('success', 'Item has been inserted successfully.');
+
     }
 }

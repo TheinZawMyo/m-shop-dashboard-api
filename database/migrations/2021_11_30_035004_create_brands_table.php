@@ -15,7 +15,7 @@ class CreateBrandsTable extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->bigIncrements('b_id');
-            $table->string('b_name', 50)->nullable();
+            $table->string('b_name', 50);
             $table->string('b_country', 100)->nullable();
             $table->timestamps();
         });

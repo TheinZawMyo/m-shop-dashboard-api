@@ -12,6 +12,7 @@ class Product extends Model
         'p_name',
         'price',
         'specs',
+        'p_image',
         'qty',
         'stock',
         'b_id'

@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('o_id');
-            $table->string('order_id')->nullable();
+            $table->string('order_id');
             $table->unsignedBigInteger('u_id');
             $table->unsignedBigInteger('p_id');
             $table->boolean('apt_rjt_order')->default(true);
