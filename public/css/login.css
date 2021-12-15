@@ -1,0 +1,51 @@
+.login_back {
+	height: 70vh;
+	width: 100%;
+}
+
+.login_container {
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	text-align: center;
+}
+
+.login_card {
+	width: 400px;
+	padding: 20px;
+	background: var(--white-color);
+	box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.login_card .form_field {
+	margin: 15px 5px;
+}
+
+.login_card .form_control,
+.login_card .login_btn {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid var(--primary-color);
+	font-size: 1rem;
+}
+
+.login_card .login_btn {
+	background-color: var(--primary-color);
+	color: var(--white-color);
+}
+
+@media screen and (max-width: 787px){
+	.login_card {
+		min-width: 100%;
+	}
+
+	.login_container {
+		padding: 10px;
+	}
+
+}

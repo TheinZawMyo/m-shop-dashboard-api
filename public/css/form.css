@@ -1,0 +1,111 @@
+.form_row {
+	display: flex;
+	flex-direction: row;
+	padding: 20px;
+}
+
+.form_btn {
+	padding: 20px;
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	text-align: center;
+	background-color: var(--white-color);
+	box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.add_card {
+	padding: 30px 10px;
+}
+
+.form_field {
+	margin-top: 10px;
+}
+
+.form_btn .btn {
+	padding: 10px 15px;
+	min-width: 150px;
+	margin: 0 10px;
+}
+
+.form_row > * {
+	width: 100%;
+}
+
+.form_field .label {
+	margin: 10px auto;
+	font-weight: bold;
+}
+
+input[type=file], .form_img {
+	display: none;
+}
+
+.form_field .form_img {
+	height: 300px;
+	max-width: 300px;
+	border: 1px solid var(--primary-color);
+	border-radius: 5px;
+}
+
+.form_img #product_img_preview {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+.form_row .form_control,
+.form_row .form_option,
+.search_control {
+	padding: 10px 15px;
+	border-radius: 5px;
+	border: 1px solid var(--primary-color);
+	min-width: 90%;
+	font-size: 1rem;
+}
+
+.form_row .form_option {
+    border-radius: 0;
+}
+
+.form_row .form_control:focus {
+	outline: 1px solid var(--secondary-color);
+}
+
+.search_form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+.search_control {
+	min-width: 50%;
+}
+
+@media screen and (max-width: 787px) {
+	.form_btn .btn {
+		width: 90%;
+		margin: 5px 0px;
+	}
+
+	.form_control, .form_img {
+		width: 100%;
+	}
+
+	.form_btn {
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		padding: 0;
+	}
+
+	.form_row {
+		flex-direction: column;
+	}
+
+	.search_control {
+		width: 100%;
+	}
+}
+
