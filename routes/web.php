@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,5 +29,10 @@ Route::group(['middleware' => 'authCheck'], function(){
         Route::get('/delete/{id}', [ProductController::class, 'deleteItem'])->name('product#delete');
         Route::post('/update/{id}', [ProductController::class, 'updateItem'])->name('update#product');
     });
+
+    Route::group(['prefix' => 'orders'], function(){
+        Route::get('/list', [OrderController::class, 'list'])->name('order#list');
+    });
+
     Route::get('/logout', [EmployeeController::class, 'logout'])->name('emp#logout');
 });

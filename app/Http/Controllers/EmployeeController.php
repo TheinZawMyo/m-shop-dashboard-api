@@ -13,7 +13,7 @@ class EmployeeController extends Controller
 {
     public function index(){
         if(Session::has('LOGIN_USER')){
-            return view('orders.order_list');
+            return redirect()->route('order#list');
         }
         return view('login.login');
     }
@@ -31,7 +31,7 @@ class EmployeeController extends Controller
         if(!empty($user) && Hash::check($request->password, $user->password)){
             Session::put('LOGIN_USER', $user);
         
-            return view('orders.order_list');
+            return redirect()->route('order#list');
         }else {
             return redirect()->route('emp#login')->with(['error' => 'Invalid User! Try again!']);
         }

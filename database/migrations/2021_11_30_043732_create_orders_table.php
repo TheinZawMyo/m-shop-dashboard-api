@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('p_id');
             $table->boolean('apt_rjt_order')->default(true);
             $table->timestamps();
-            $table->foreign('u_id')->references('u_id')->on('users')->onDelete('cascade');
+            $table->foreign('u_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('p_id')->references('p_id')->on('products')->onDelete('cascade');
 
         });

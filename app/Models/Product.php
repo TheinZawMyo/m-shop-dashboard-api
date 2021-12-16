@@ -17,4 +17,6 @@ class Product extends Model
         'stock',
         'b_id'
     ];
+
+    // protected $primaryKey = 'p_id';
 }

@@ -7,7 +7,8 @@
             </div>
             <div class="card_title">{{ $product->p_name }}</div>
             <div class="card_desc">
-                {{ $product->specs }}
+                Price : 
+                {{ $product->price }} MMK
             </div>
             <div class="btn_group">
                 <a href="{{ route('product#detail', $product->p_id) }}"><i class="bx bx-pencil"></i></a>

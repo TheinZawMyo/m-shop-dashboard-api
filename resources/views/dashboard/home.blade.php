@@ -32,7 +32,7 @@
             <hr />
             <div class="menu_list">
                 <ul class="menu">
-                    <a href="" class="menu_link">
+                    <a href="{{ route('order#list') }}" class="menu_link">
                         <li class="menu_item">Orders List</li>
                     </a>
                     <a href="{{ route('product#list') }}" class="menu_link">
