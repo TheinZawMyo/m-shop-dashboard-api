@@ -24,6 +24,10 @@ Route::group(['middleware' => 'authCheck'], function(){
         Route::get('/search', [ProductController::class, 'productSearch'])->name('product#search');
         Route::get('/new', [ProductController::class, 'newProductForm'])->name('new#product');
         Route::post('/save', [ProductController::class, 'saveProduct'])->name('save#product');
+
+        Route::get('/detail/{id}', [ProductController::class, 'getDetail'])->name('product#detail');
+        Route::get('/delete/{id}', [ProductController::class, 'deleteItem'])->name('product#delete');
+        Route::post('/update/{id}', [ProductController::class, 'updateItem'])->name('update#product');
     });
     Route::get('/logout', [EmployeeController::class, 'logout'])->name('emp#logout');
 });

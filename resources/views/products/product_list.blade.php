@@ -10,6 +10,12 @@
         <div class="add_btn">
             <a href="{{ route('new#product') }}" class="btn primary_btn">New Product</a>
         </div>
+        @if ($success = session()->get('success'))
+        <br>
+            <div class="success">
+                <span class="success_text">{{ $success }}</span>
+            </div>
+        @endif
         <div id="all_products">
             @include('products.product_pagination')
 

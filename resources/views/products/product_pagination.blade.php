@@ -10,8 +10,8 @@
                 {{ $product->specs }}
             </div>
             <div class="btn_group">
-                <i class="bx bx-pencil"></i>
-                <i class="bx bx-trash"></i>
+                <a href="{{ route('product#detail', $product->p_id) }}"><i class="bx bx-pencil"></i></a>
+                <a href="{{ route('product#delete', $product->p_id) }}" onclick="return confirm('Are you sure to delete?')"><i class="bx bx-trash"></i></a>
             </div>
         </div>
     @endforeach

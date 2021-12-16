@@ -54,7 +54,12 @@ a {
 .success {
     border: 2px solid #66CDAA;
     padding: 10px;
+    margin: 0px 20px;
     text-align: center;
     color: #66CDAA;
+}
+
+textarea {
+    font-family: 'Varela Round', sans-serif;
 }
 
