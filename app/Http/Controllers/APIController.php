@@ -73,7 +73,7 @@ class APIController extends Controller
                         ->orderBy('created_at', 'desc')->get();
 
         return response()->json([
-            'data' => $this->paginate(ProductResource::collection($products)),
+            'products' => ProductResource::collection($products),
             'status' => 1,
         ]);
     }
@@ -81,7 +81,7 @@ class APIController extends Controller
     /***
      * custom pagination
      */
-    public function paginate($items, $perPage = 10, $page = null, $options = [])
+    public function paginate($items, $perPage = 12, $page = null, $options = [])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);

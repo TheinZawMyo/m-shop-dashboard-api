@@ -63,6 +63,7 @@ class ProductController extends Controller
             $req_data['p_image'] = $product_photo;
         }
 
+        
         Product::create($req_data);
 
         return redirect()->back()->with('success', 'Item has been inserted successfully.');
@@ -92,7 +93,7 @@ class ProductController extends Controller
             'name' => 'required|max:100',
             'price' => 'required',
             'qty' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'specs' => 'required',
             'brand_name' => 'required',
             'stock' => 'required'
@@ -105,7 +106,6 @@ class ProductController extends Controller
         $req_data['specs'] = $request->post('specs');
         $req_data['b_id'] = $request->post('brand_name');
         $req_data['stock'] = $request->post('stock');
-        
         
         
         if ($image = $request->file('image')) {
