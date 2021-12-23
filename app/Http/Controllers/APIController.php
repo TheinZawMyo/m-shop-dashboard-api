@@ -66,25 +66,39 @@ class APIController extends Controller
     /***
      * product list api
      */
-    public function productList(){
-        $products = DB::table('products')
-                        ->join('brands', 'brands.b_id','=', 'products.b_id')
-                        ->select('products.*', 'brands.b_name')
-                        ->orderBy('created_at', 'desc')->get();
+    public function productList(Request $request){
+        
+        $perPage = 12;
+        $page = $request->input("page", 1);
+        $data = $request->input("query");
 
-        return response()->json([
-            'products' => ProductResource::collection($products),
-            'status' => 1,
+        $query = Product::query();
+        $query->where('products.p_name', 'like', '%'.$data.'%')
+                ->join('brands', 'brands.b_id','=', 'products.b_id')
+                ->select('products.*', 'brands.b_name')
+                ->orderBy('created_at', 'desc');
+        
+        $total = $query->count();
+
+        $result = $query->offset(($page - 1) * $perPage)->limit($perPage)->get();
+
+        return response([
+           'products' => ProductResource::collection($result),
+            'total' => $total,
+            'current_page' => $page,
+            'per_page' => $perPage,
+            'last_page' => ceil($total / $perPage),
         ]);
+
     }
 
-    /***
-     * custom pagination
-     */
-    public function paginate($items, $perPage = 12, $page = null, $options = [])
-    {
-        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
-        $items = $items instanceof Collection ? $items : Collection::make($items);
-        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
-    }
+    // /***
+    //  * custom pagination
+    //  */
+    // public function paginate($items, $perPage = 5, $page = null, $options = [])
+    // {
+    //     $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+    //     $items = $items instanceof Collection ? $items : Collection::make($items);
+    //     return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    // }
 }
