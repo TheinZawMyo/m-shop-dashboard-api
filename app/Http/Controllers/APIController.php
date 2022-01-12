@@ -11,6 +11,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use DB;
+use App\Models\Order;
 
 class APIController extends Controller
 {
@@ -25,7 +26,7 @@ class APIController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json(['error' => $validator->errors(), 'status' => 0], 400); 
+            return response(['error' => $validator->errors(), 'status' => 0]); 
         }
 
         $user = User::create([
@@ -42,7 +43,7 @@ class APIController extends Controller
             'status' => 1
         ];
 
-        return response()->json($data, 200);
+        return response($data, 200);
     }
 
     /**
@@ -57,9 +58,9 @@ class APIController extends Controller
 
         if(auth()->attempt($data)){
             $token = auth()->user()->createToken('MshopApiToken')->accessToken;
-            return response()->json(['token' => $token,'user' => auth()->user(), 'status' => 1], 200);
+            return response(['token' => $token,'user' => auth()->user(), 'status' => 1], 200);
         }else {
-            return response()->json(['error' => 'Unauthorized', 'status' => 0], 401);
+            return response(['error' => 'Unauthorized User', 'status' => 0]);
         }
     }
 
@@ -76,7 +77,7 @@ class APIController extends Controller
         $query->where('products.p_name', 'like', '%'.$data.'%')
                 ->join('brands', 'brands.b_id','=', 'products.b_id')
                 ->select('products.*', 'brands.b_name')
-                ->orderBy('created_at', 'desc');
+                ->orderBy('products.created_at', 'desc');
         
         $total = $query->count();
 
@@ -101,4 +102,57 @@ class APIController extends Controller
     //     $items = $items instanceof Collection ? $items : Collection::make($items);
     //     return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     // }
+
+
+    /**
+     * product detail api
+     */
+    public function productDetail(Request $request){
+        $id = $request->input('product_id');
+        $product = DB::table('products')
+                    ->where('p_id', $id)
+                    ->join('brands', 'brands.b_id', '=', 'products.b_id')
+                    ->select('products.*', 'brands.b_name')        
+                    ->first();
+        if($product){
+            return response([
+                'product' => new ProductResource($product),
+                'status' => 1,
+            ]);
+        }else {
+            return response([
+                'message' => 'There is no product',
+                'status' => 0
+            ]);
+        }
+    }
+
+
+    public function itemOrder(Request $request){
+        if($req_data = $request->orders){
+            foreach($req_data as $key => $value){
+                $order = Order::create([
+                    'order_id' => 'order_' .strtoupper($this->unique_code()),
+                    'u_id' => $value['u_id'],
+                    'p_id' => $value['p_id'],
+                    'qty' => $value['qty'],
+                    'total' => $value['total'],
+                ]);
+            }
+        }
+        if($order){
+            return response(['success' => 'Your order is done successfully']);
+        }else {
+            return response(['error' => 'Your order is failed']);
+        }
+    }
+
+    /**
+     * unique id 
+     */
+    function unique_code()
+    {
+        return substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 10);
+    }
+
 }

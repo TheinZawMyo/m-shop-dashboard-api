@@ -317,7 +317,10 @@ class ProductSeeder extends Seeder
             [
                 'p_name' => 'Xiaomi 5 pro',
                 'price' => '121212',
-                'specs' => 'RAM ROM GPU BAR NYAR',
+                'specs' => 'Specifications: Fast charging (23W, unofficial
+                rating), 50% in 30 min (advertised) USB Power
+                Delivery 2.0 MagSafe wireless charging 15W Qi
+                magnetic fast wireless charging 7.5W',
                 'qty' => '121',
                 'p_image' => 'iphone13.jpg',
                 'stock' => true,
@@ -327,7 +330,10 @@ class ProductSeeder extends Seeder
             [
                 'p_name' => 'Xiaomi 5 pro',
                 'price' => '121212',
-                'specs' => 'RAM ROM GPU BAR NYAR',
+                'specs' => 'Specifications: Fast charging (23W, unofficial
+                rating), 50% in 30 min (advertised) USB Power
+                Delivery 2.0 MagSafe wireless charging 15W Qi
+                magnetic fast wireless charging 7.5W',
                 'qty' => '121',
                 'p_image' => 'iphone13.jpg',
                 'stock' => true,
@@ -337,7 +343,10 @@ class ProductSeeder extends Seeder
             [
                 'p_name' => 'Xiaomi 5 pro',
                 'price' => '121212',
-                'specs' => 'RAM ROM GPU BAR NYAR',
+                'specs' => 'Specifications: Fast charging (23W, unofficial
+                rating), 50% in 30 min (advertised) USB Power
+                Delivery 2.0 MagSafe wireless charging 15W Qi
+                magnetic fast wireless charging 7.5W',
                 'qty' => '121',
                 'p_image' => 'iphone13.jpg',
                 'stock' => true,
@@ -347,7 +356,10 @@ class ProductSeeder extends Seeder
             [
                 'p_name' => 'Xiaomi 5 pro',
                 'price' => '121212',
-                'specs' => 'RAM ROM GPU BAR NYAR',
+                'specs' => 'Specifications: Fast charging (23W, unofficial
+                rating), 50% in 30 min (advertised) USB Power
+                Delivery 2.0 MagSafe wireless charging 15W Qi
+                magnetic fast wireless charging 7.5W',
                 'qty' => '121',
                 'p_image' => 'iphone13.jpg',
                 'stock' => true,

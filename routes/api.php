@@ -17,7 +17,12 @@ use App\Http\Controllers\APIController;
 
 Route::post('/register', [APIController::class, 'register']);
 Route::post('/login', [APIController::class, 'login']);
-Route::get('/products/list', [APIController::class, 'productList']);
+
+Route::group(['prefix' => 'products'], function(){
+    Route::get('/list', [APIController::class, 'productList']);
+    Route::get('/detail', [APIController::class, 'productDetail']);
+});
 
 Route::middleware('auth:api')->group(function(){
+    Route::post('/orders', [APIController::class, 'itemOrder']);
 });
