@@ -64,6 +64,21 @@ class APIController extends Controller
         }
     }
 
+    public function updateProfile(Request $request){
+        if($request){
+            $user = User::where('id', $request->id)
+                    ->update([
+                        'phone' => $request->phone,
+                        'address' => $request->address
+                    ]);
+            if($user){
+                return response(['message' => 'User information has been updated successfully']);
+            }else {
+                return response(['error' => 'Somethin wrong!']);
+            }
+        }
+    }
+
     /***
      * product list api
      */

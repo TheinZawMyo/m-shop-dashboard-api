@@ -25,4 +25,5 @@ Route::group(['prefix' => 'products'], function(){
 
 Route::middleware('auth:api')->group(function(){
     Route::post('/orders', [APIController::class, 'itemOrder']);
+    Route::post('/updateProfile', [APIController::class, 'updateProfile']);
 });

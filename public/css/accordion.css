@@ -23,8 +23,10 @@
 
 .acc_flex {
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: center;
+    padding: 0px 20px;
     flex-direction: row;
 }
 
@@ -40,7 +42,6 @@
 
 .acc_toggle i {
     padding: unset !important;
-    font-size: unset;
     margin-left: 5px;
 }
 
@@ -57,6 +58,12 @@
     .title_flex {
         display: none;
     }
+}
+
+.acc_toggle {
+    position: absolute;
+    bottom: 2;
+    left: 0;
 }
 
 .danger_btn {
