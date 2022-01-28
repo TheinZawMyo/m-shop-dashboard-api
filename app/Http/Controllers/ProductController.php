@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
 
     public function productList(){
-        $products = Product::orderBy('price', 'desc')->paginate(6);
+        $products = Product::orderBy('price', 'desc')->paginate(8);
         return view('products.product_list', compact('products'));
     }
 
@@ -23,7 +23,7 @@ class ProductController extends Controller
                     ->where('p_name', 'like', '%'.$req_data.'%')
                     ->orWhere('specs', 'like', '%'.$req_data.'%')
                     ->orderBy('created_at', 'desc')
-                    ->paginate(6);
+                    ->paginate(8);
             
             return view('products.product_pagination', compact('products'))->render();
 

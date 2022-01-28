@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/png" href="../images/shop-logo.png"/>
     <title>@yield('title')</title>
 
     <!-- Fonts -->
@@ -32,7 +33,7 @@
             <hr />
             <div class="menu_list">
                 <ul class="menu">
-                    <a href="{{ route('order#list') }}" class="menu_link">
+                    <a href="{{ route('customer#list') }}" class="menu_link">
                         <li class="menu_item">Orders List</li>
                     </a>
                     <a href="{{ route('product#list') }}" class="menu_link">

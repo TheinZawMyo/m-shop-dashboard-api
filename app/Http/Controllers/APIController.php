@@ -148,7 +148,7 @@ class APIController extends Controller
             foreach($req_data as $key => $value){
                 $order = Order::create([
                     'order_id' => 'order_' .strtoupper($this->unique_code()),
-                    'u_id' => $value['u_id'],
+                    'user_id' => $value['user_id'],
                     'p_id' => $value['p_id'],
                     'qty' => $value['qty'],
                     'total' => $value['total'],

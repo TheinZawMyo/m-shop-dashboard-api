@@ -16,13 +16,13 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('o_id');
             $table->string('order_id');
-            $table->unsignedBigInteger('u_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('p_id');
             $table->integer('qty');
             $table->string('total');
             $table->boolean('apt_rjt_order')->default(true);
             $table->timestamps();
-            $table->foreign('u_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('p_id')->references('p_id')->on('products')->onDelete('cascade');
 
         });

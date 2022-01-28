@@ -92,7 +92,7 @@ i {
 .list_container {
 	display: grid;
 	margin: 0 auto;
-	grid-template-columns: 33.3% 33.3% 33.3%;
+	grid-template-columns: 25% 25% 25% 25%;
 }
 
 @media screen and (max-width: 787px){

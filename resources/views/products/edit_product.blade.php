@@ -58,12 +58,6 @@
                                 <span class="btn primary_btn"
                                     onclick="document.getElementById('product_img').click()">Upload Image</span>
                             </div>
-                            {{-- @error('image')
-                                <br>
-                                <div class="error">
-                                    <span class="error_text" id="">{{ $message }}</span>
-                                </div>
-                            @enderror --}}
                             
                         </div>
                         <div class="form_field">
