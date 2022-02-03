@@ -11,8 +11,9 @@ use Session;
 
 class EmployeeController extends Controller
 {
-    public function index(){
-        if(Session::has('LOGIN_USER')){
+    public function index()
+    {
+        if (Session::has('LOGIN_USER')) {
             return redirect()->route('customer#list');
         }
         return view('login.login');
@@ -21,25 +22,26 @@ class EmployeeController extends Controller
     /**
      * login
      */
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $request->validate([
             'email' => 'required|email|max:100',
             'password' => 'required|min:8|max:40'
         ]);
-        
+
         $user = Employee::where('email', $request->email)->first();
-        if(!empty($user) && Hash::check($request->password, $user->password)){
+        if (!empty($user) && Hash::check($request->password, $user->password)) {
             Session::put('LOGIN_USER', $user);
-        
+
             return redirect()->route('customer#list');
-        }else {
+        } else {
             return redirect()->route('emp#login')->with(['error' => 'Invalid User! Try again!']);
         }
-
     }
 
-    public function logout(){
-        if(Session::has("LOGIN_USER")){
+    public function logout()
+    {
+        if (Session::has("LOGIN_USER")) {
             Session::forget('LOGIN_USER');
         }
 

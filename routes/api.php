@@ -19,11 +19,13 @@ Route::post('/register', [APIController::class, 'register']);
 Route::post('/login', [APIController::class, 'login']);
 
 Route::group(['prefix' => 'products'], function(){
-    Route::get('/list', [APIController::class, 'productList']);
     Route::get('/detail', [APIController::class, 'productDetail']);
+    Route::get('/list', [APIController::class, 'productList']);
 });
 
 Route::middleware('auth:api')->group(function(){
-    Route::post('/orders', [APIController::class, 'itemOrder']);
-    Route::post('/updateProfile', [APIController::class, 'updateProfile']);
+    Route::post('/order', [APIController::class, 'itemOrder']);
+    Route::get('/user/detail', [APIController::class, 'userDetail']);
+    Route::post('/update/profile', [APIController::class, 'updateProfile']);
+
 });

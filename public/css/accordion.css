@@ -16,13 +16,17 @@
     border-top: 1px dotted var(--primary-color);
 }
 
+.acc_title:last-child {
+    text-align: center;
+}
+
 .acc_title {
-    text-align: left;
     width: 100%;
 }
 
 .acc_flex {
     display: flex;
+    
     position: relative;
     justify-content: space-between;
     align-items: center;
@@ -38,6 +42,19 @@
     display: none;
     transition: 1.5s;
     color: var(--dark-color);
+}
+
+.acc_panel .item {
+    position: relative;
+}
+
+.order_date {
+    color: azure;
+    background: rgb(106, 194, 106);
+    padding: 2px 5px;
+    position: absolute;
+    top: 10px;
+    right: 0px;
 }
 
 .acc_toggle i {

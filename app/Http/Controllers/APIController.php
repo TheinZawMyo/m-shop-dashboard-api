@@ -66,17 +66,36 @@ class APIController extends Controller
 
     public function updateProfile(Request $request){
         if($request){
-            $user = User::where('id', $request->id)
+             User::where('id', $request->id)
                     ->update([
                         'phone' => $request->phone,
                         'address' => $request->address
                     ]);
+            $user = User::findOrFail($request->id);
             if($user){
-                return response(['message' => 'User information has been updated successfully']);
-            }else {
-                return response(['error' => 'Somethin wrong!']);
+                return response([
+                    'message' => 'User information has been updated successfully', 
+                    'status' => 1, 
+                    'user' => $user]);
             }
         }
+        return response(['error' => 'Something wrong!', 'status' => 0]);
+        
+    }
+
+    public function userDetail(Request $request){
+        $order_detail = User::where('id', $request->id)
+                        ->join('orders', 'orders.user_id', '=', 'users.id')
+                        ->join('products', 'products.p_id', '=', 'orders.p_id')
+                        ->select('products.p_name as product_name', 'products.price',
+                        'orders.order_id', 'orders.qty', 'orders.created_at as ordered_date')
+                        ->get();
+        $user_detail = User::findOrFail($request->id);  
+        return response([
+            'user_detail' => $user_detail,
+            'order_detail' => $order_detail,
+            'status' => 1
+        ]);
     }
 
     /***
@@ -156,10 +175,11 @@ class APIController extends Controller
             }
         }
         if($order){
-            return response(['success' => 'Your order is done successfully']);
+            return response(['success' => 'Your order is done successfully', 'status' => 1]);
         }else {
-            return response(['error' => 'Your order is failed']);
+            return response(['error' => 'Your order is failed', 'status' => 0]);
         }
+        // return response($request->orders);
     }
 
     /**

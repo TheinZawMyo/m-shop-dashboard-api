@@ -18,8 +18,8 @@ use App\Http\Controllers\OrderController;
 Route::get('/', [EmployeeController::class, 'index']);
 Route::post('/dashboard', [EmployeeController::class, 'login'])->name('emp#login');
 
-Route::group(['middleware' => 'authCheck'], function(){
-    Route::group(['prefix' => 'products'], function(){
+Route::group(['middleware' => 'authCheck'], function () {
+    Route::group(['prefix' => 'products'], function () {
         Route::get('/list', [ProductController::class, 'productList'])->name('product#list');
         Route::get('/search', [ProductController::class, 'productSearch'])->name('product#search');
         Route::get('/new', [ProductController::class, 'newProductForm'])->name('new#product');
@@ -30,7 +30,7 @@ Route::group(['middleware' => 'authCheck'], function(){
         Route::post('/update/{id}', [ProductController::class, 'updateItem'])->name('update#product');
     });
 
-    Route::group(['prefix' => 'orders'], function(){
+    Route::group(['prefix' => 'orders'], function () {
         Route::get('/list', [OrderController::class, 'customerList'])->name('customer#list');
         Route::get('/orders', [OrderController::class, 'orderList'])->name('order#list');
     });

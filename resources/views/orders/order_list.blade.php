@@ -8,21 +8,21 @@
                 <div class="acc_title">Customer Name</div>
                 <div class="acc_title">Phone</div>
                 <div class="acc_title">Address</div>
-                <div class="acc_title">Ordered Date</div>
+                {{-- <div class="acc_title">Ordered Date</div> --}}
                 <div class="acc_title">Action</div>
             </div>
         </div>
         @foreach ($order_users as $users)
             <div class="card accordion">
                 <div class="acc_flex acc_data">
-                    <i class="bx bx-down-arrow-alt acc_toggle" data-id={{$users->id}}></i>
+                    <i class="bx bx-down-arrow-alt acc_toggle" data-id={{ $users->id }}></i>
                     <div class="">{{ $users->name }}</div>
                     <div><span>{{ $users->phone }}</span></div>
                     <div>
-                        <span>{{$users->address}}
+                        <span>{{ $users->address }}
                         </span>
                     </div>
-                    <div>{{$users->ordered_date}}</div>
+                    {{-- <div>{{ $users->ordered_date }}</div> --}}
                     <div>
                         <button class="btn primary_btn">Pending</button>
                         <button class="btn danger_btn">
@@ -33,11 +33,11 @@
                 <div class="acc_panel">
 
                 </div>
-                
-                
+
+
             </div>
         @endforeach
-        
+
     </div>
     <script>
         $.ajaxSetup({
@@ -58,8 +58,10 @@
                 $.ajax({
                     type: "GET",
                     url: "orders",
-                    data: {id},
-                    success:function(res){
+                    data: {
+                        id
+                    },
+                    success: function(res) {
                         let data_container = '';
                         res.forEach(order => {
                             data_container += `<div class="item">
@@ -69,13 +71,14 @@
                                 <span>Total : ${order.total} MMK</span><br />
                                 <span>Quantity : ${order.qty}</span><br />
                                 <span>Specifications: ${order.specs}</span>
+                                <span class="order_date">Ordered Date: ${order.orderDate}</span>
                             </div>`;
                         });
                         panel[i].innerHTML = data_container;
                         console.log(res);
                     }
                 });
-                
+
 
             });
         }

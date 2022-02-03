@@ -10,7 +10,8 @@
                     <span class="success_text">{{ $success }}</span>
                 </div>
             @endif
-            <form action="{{ route('update#product', $product->p_id) }}" method="POST" id="product_form" enctype="multipart/form-data">
+            <form action="{{ route('update#product', $product->p_id) }}" method="POST" id="product_form"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="form_row">
                     <!-- first col -->
@@ -22,7 +23,7 @@
 
                             <div class="form_input">
                                 <input type="text" name="name" id="name" class="form_control"
-                                    placeholder="Enter your item name" value="{{ old('name', $product->p_name) }}"/>
+                                    placeholder="Enter your item name" value="{{ old('name', $product->p_name) }}" />
                             </div>
                             @error('name')
                                 <div class="error">
@@ -39,7 +40,9 @@
                                 <select name="brand_name" id="" class="form_option">
                                     <option value="" selected disabled>--select--</option>
                                     @foreach ($brands as $brand)
-                                        <option value="{{ $brand->b_id }}" {{ $product->b_id == $brand->b_id ? 'selected' : ''}}>{{ $brand->b_name }}</option>
+                                        <option value="{{ $brand->b_id }}"
+                                            {{ $product->b_id == $brand->b_id ? 'selected' : '' }}>{{ $brand->b_name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -58,11 +61,12 @@
                                 <span class="btn primary_btn"
                                     onclick="document.getElementById('product_img').click()">Upload Image</span>
                             </div>
-                            
+
                         </div>
                         <div class="form_field">
                             <div class="form_img" id="preview_container">
-                                <img src="{{ asset('images/'.$product->p_image) }}" alt="Product Image" id="product_img_preview">
+                                <img src="{{ asset('images/' . $product->p_image) }}" alt="Product Image"
+                                    id="product_img_preview">
                             </div>
                         </div>
                     </div>
@@ -75,7 +79,7 @@
                             </div>
                             <div class="form_input">
                                 <input type="number" name="price" id="price" class="form_control"
-                                    placeholder="Enter your item price" value="{{ old('price',$product->price) }}"/>
+                                    placeholder="Enter your item price" value="{{ old('price', $product->price) }}" />
                             </div>
                             @error('price')
                                 <div class="error">
@@ -89,7 +93,7 @@
                             </div>
                             <div class="form_input">
                                 <input type="number" name="qty" id="qty" class="form_control"
-                                    placeholder="Enter your available qty" value="{{ old('qty', $product->qty) }}"/>
+                                    placeholder="Enter your available qty" value="{{ old('qty', $product->qty) }}" />
                             </div>
                             @error('qty')
                                 <div class="error">
@@ -102,9 +106,11 @@
                                 <label for="name">Instock/Preorder</label>
                             </div>
                             <div class="form_input">
-                                <input type="radio" name="stock" id="stock" class="form_radio" value="1" {{ $product->stock == '1' ? 'checked': ''}}/>
+                                <input type="radio" name="stock" id="stock" class="form_radio" value="1"
+                                    {{ $product->stock == '1' ? 'checked' : '' }} />
                                 InStock &nbsp;
-                                <input type="radio" name="stock" id="stock" class="form_radio" value="0" {{ $product->stock == '0' ? 'checked': ''}}/>
+                                <input type="radio" name="stock" id="stock" class="form_radio" value="0"
+                                    {{ $product->stock == '0' ? 'checked' : '' }} />
                                 PreOrder
                             </div>
                             @error('stock')
@@ -118,7 +124,8 @@
                                 <label for="spec">Item Specifications</label>
                             </div>
                             <div class="form_input">
-                                <textarea name="specs" class="form_control" id="" cols="30" rows="10">{{ old('specs', $product->specs) }}</textarea>
+                                <textarea name="specs" class="form_control" id="" cols="30"
+                                    rows="10">{{ old('specs', $product->specs) }}</textarea>
                             </div>
                             @error('specs')
                                 <div class="error">
@@ -143,7 +150,7 @@
 
     <script>
         $(document).ready(() => {
-            if($('#product_img_preview').src !== ''){
+            if ($('#product_img_preview').src !== '') {
                 preview_container.style.display = 'block';
             }
         });
