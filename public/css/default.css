@@ -59,6 +59,10 @@ a {
     color: #66CDAA;
 }
 
+.txt_success {
+    color: #66CDAA;
+}
+
 textarea {
     font-family: 'Varela Round', sans-serif;
 }

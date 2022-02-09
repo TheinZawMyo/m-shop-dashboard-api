@@ -85,10 +85,12 @@ class APIController extends Controller
 
     public function userDetail(Request $request){
         $order_detail = User::where('id', $request->id)
+                        ->where('orders.apt_rjt_order', '!=', 0)
                         ->join('orders', 'orders.user_id', '=', 'users.id')
                         ->join('products', 'products.p_id', '=', 'orders.p_id')
                         ->select('products.p_name as product_name', 'products.price',
-                        'orders.order_id', 'orders.qty', 'orders.created_at as ordered_date')
+                        'orders.order_id', 'orders.qty', 'orders.created_at as ordered_date', 'orders.apt_rjt_order as order_status')
+                        ->orderBy('orders.created_at', 'asc')
                         ->get();
         $user_detail = User::findOrFail($request->id);  
         return response([

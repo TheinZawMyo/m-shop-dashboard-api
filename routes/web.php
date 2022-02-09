@@ -33,6 +33,8 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/list', [OrderController::class, 'customerList'])->name('customer#list');
         Route::get('/orders', [OrderController::class, 'orderList'])->name('order#list');
+        Route::get('/deliver/{id}', [OrderController::class, 'orderDeliver'])->name('order#deliver');
+        Route::get('/reject/{id}', [OrderController::class, 'orderReject'])->name('order#reject');
     });
 
     Route::get('/logout', [EmployeeController::class, 'logout'])->name('emp#logout');

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use App\Http\Controllers\APIController;
 
 Route::post('/register', [APIController::class, 'register']);
 Route::post('/login', [APIController::class, 'login']);
+
+Route::get('/auth/google/url', [AuthController::class, 'loginUrl']);
+Route::get('/auth/google/callback', [AuthController::class, 'loginCallback']);
 
 Route::group(['prefix' => 'products'], function(){
     Route::get('/detail', [APIController::class, 'productDetail']);

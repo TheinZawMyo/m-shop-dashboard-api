@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <h2 class="title">M shop Orders list</h2>
+            @if ($success = session()->get('success'))
+                <div class="message success">
+                    <span class="success_text">{{ $success }}</span>
+                </div>
+            @endif
         <div class="card accordion title_flex">
             <div class="acc_flex">
                 <div class="acc_title">Customer Name</div>
@@ -24,10 +29,12 @@
                     </div>
                     {{-- <div>{{ $users->ordered_date }}</div> --}}
                     <div>
-                        <button class="btn primary_btn">Pending</button>
-                        <button class="btn danger_btn">
-                            Reject
-                        </button>
+                        @if($users->order_status == 1)
+                            <a href="{{ route('order#deliver', $users->id) }}" class="btn primary_btn">Pending</a>
+                            <a href="{{ route('order#reject', $users->id) }}" class="btn danger_btn">
+                                Reject
+                            </a>
+                        @endif
                     </div>
                 </div>
                 <div class="acc_panel">
@@ -37,6 +44,9 @@
 
             </div>
         @endforeach
+        <div>
+            {!! $order_users->links('dashboard.custom_paginate') !!}
+        </div>
 
     </div>
     <script>
